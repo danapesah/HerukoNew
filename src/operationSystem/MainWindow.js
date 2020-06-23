@@ -31,7 +31,7 @@ update_data_io()
        
               chosen_state_id = JSON.parse(JSON.parse(serializedStateID ))
               
-              axios.post('http://localhost:5000/counts/edit/' + id , data  )
+              axios.post('https://newcountdownapp.herokuapp.com/counts/edit/' + id , data  )
               .then(res => console.log(res.data),
               socket.emit("table saved to the DB" ,id))
             
@@ -63,7 +63,7 @@ update_data_io()
     if(curr_chosen_state_id!==null && curr_chosen_state_id===chosen_state_id )
     {
       console.log("table saved to the DB") 
-      axios.get('http://localhost:5000/counts/') //GET REQUEST
+      axios.get('https://newcountdownapp.herokuapp.com/counts/') //GET REQUEST
       .then(response => {
       
         let DB_info = null
@@ -126,7 +126,7 @@ catch (err)
           CountDownlists: this.props.CountDownWindowReducers.CountDownlists
         }
           console.log("count: SAVE_STATE " , this.props.state);
-          axios.post('http://localhost:5000/counts/add',  newState)
+          axios.post('https://newcountdownapp.herokuapp.com/counts/add',  newState)
           .then(res => console.log(res.data  ),  );//promise, after its posted well console our the res.data
           window.location = '/list';
         }} >שמור טבלה חדשה  </button>:
@@ -145,7 +145,7 @@ catch (err)
           }
           //console.log(this.props.CountDownWindowReducers)
           console.log("count edit: SAVE_STATE " , newState);
-            axios.post('http://localhost:5000/counts/edit/' + curr_location.slice(6), newState)
+            axios.post('https://newcountdownapp.herokuapp.com/counts/edit/' + curr_location.slice(6), newState)
             .then(res => console.log(res.data)); 
            window.location = '/list';
          }} >שמור טבלה ערוכה </button>

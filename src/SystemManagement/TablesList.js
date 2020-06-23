@@ -22,7 +22,7 @@ class TablesList extends Component {
       }
    componentDidMount() {
      
-    axios.get('http://localhost:5000/counts/') //GET REQUEST
+    axios.get('https://newcountdownapp.herokuapp.com/counts/') //GET REQUEST
       .then(response => {
       if (response.data.length===0)return;
       this.setState({ 
@@ -79,7 +79,7 @@ class TablesList extends Component {
               let newTable = this.state.DB_info[i]._system_info_object
               newTable.title = "copy "+  this.state.DB_info[i]._system_info_object.title
               // console.log(this.state.DB_info[i]._system_info_object)
-              axios.post('http://localhost:5000/counts/add',  this.state.DB_info[i]._system_info_object)
+              axios.post('https://newcountdownapp.herokuapp.com/counts/add',  this.state.DB_info[i]._system_info_object)
               .then(res => console.log(res.data  )  )//promise, after its posted well console our the res.data
               alert("new table added: " +"\""+ newTable.title+"\"")
             }

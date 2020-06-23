@@ -16,7 +16,7 @@ class UsersList extends Component {
         };
       }
    componentDidMount() {
-    axios.get('http://localhost:5000/users/') //GET REQUEST
+    axios.get('https://newcountdownapp.herokuapp.com/users/') //GET REQUEST
       .then(response => {
       if (response.data.length===0)return;
       this.setState({ DB_users_info :response.data, data_length:response.data.length, spinner_on:false, })
@@ -53,7 +53,7 @@ class UsersList extends Component {
     }
   }
   _delete_chosen_user(id){
-    axios.delete('http://localhost:5000/users/'+id)
+    axios.delete('https://newcountdownapp.herokuapp.com/users/'+id)
     .then(response => { console.log(response.data)});
   }
 //////////////////////////

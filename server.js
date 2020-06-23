@@ -47,31 +47,31 @@ app.listen(port ,()=> {
 
 /////////////////////////////////UDP SERVER CDRC
 
-var PORT = process.env.PORT|| 6060;
+// var PORT = process.env.PORT|| 6060;
 
-var dgram = require('dgram');
-var serverUDPCDRC = dgram.createSocket('udp4');
+// var dgram = require('dgram');
+// var serverUDPCDRC = dgram.createSocket('udp4');
 
-serverUDPCDRC.bind(PORT);
-serverUDPCDRC.on('listening', function() {
-  var addressCDRC = serverUDPCDRC.address();
- console.log('UDP Server listening on ' + addressCDRC.address + ':' + addressCDRC.port);
-});
+// serverUDPCDRC.bind(PORT);
+// serverUDPCDRC.on('listening', function() {
+//   var addressCDRC = serverUDPCDRC.address();
+//  console.log('UDP Server listening on ' + addressCDRC.address + ':' + addressCDRC.port);
+// });
 
 
 /////////////////////////////////UDP SERVER Tod
 
-var PORT = process.env.PORT|| 6070;
-var HOST = '0.0.0.0';
+// var PORT = process.env.PORT|| 6070;
+// var HOST = '0.0.0.0';
 
-var dgram = require('dgram');
-var serverUDPTod = dgram.createSocket('udp4');
+// var dgram = require('dgram');
+// var serverUDPTod = dgram.createSocket('udp4');
 
-serverUDPTod.bind(PORT);
-serverUDPTod.on('listening', function() {
-  var addressTod = serverUDPTod.address();
- console.log('UDP Server listening on ' + addressTod.address + ':' + addressTod.port);
-});
+// serverUDPTod.bind(PORT);
+// serverUDPTod.on('listening', function() {
+//   var addressTod = serverUDPTod.address();
+//  console.log('UDP Server listening on ' + addressTod.address + ':' + addressTod.port);
+// });
 
 
 ////////////////////////////////////////

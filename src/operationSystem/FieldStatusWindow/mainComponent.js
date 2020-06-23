@@ -29,7 +29,7 @@ save_to_db(){
             let copyState = JSON.parse(JSON.parse(serializedState ))
             let copy_state={...copyState}
             copy_state.StatusList=this.props.lists
-            axios.post('http://localhost:5000/counts/edit/' + chosen_state_id, copy_state)
+            axios.post('https://newcountdownapp.herokuapp.com/counts/edit/' + chosen_state_id, copy_state)
             .then(res => console.log(res.data)).
             finally (function (){
             let socket = io.connect('http://localhost:4000')

@@ -36,7 +36,7 @@ constructor(props) {
   }
 }
 componentDidMount() {
-  axios.get('http://localhost:5000/users/') //GET REQUEST
+  axios.get('https://newcountdownapp.herokuapp.com/users/') //GET REQUEST
     .then(response => {
     if (response.data.length===0)return;
     this.setState({ DB_users_info :response.data, data_length:response.data.length, spinner_on:false,})
@@ -97,9 +97,9 @@ check_input_and_save(_user_name , _password ,_permissions )
         password: _password,
         permissions: _permissions
       }
-    //send the use data to the backend, send HTTP POST REQUEST to this 'http://localhost:5000/users/add', backend endpoint 
+    //send the use data to the backend, send HTTP POST REQUEST to this 'https://newcountdownapp.herokuapp.com/users/add', backend endpoint 
     //that expects a jason object in the request body and we send it as a second arguement
-    axios.post('http://localhost:5000/users/add', user)
+    axios.post('https://newcountdownapp.herokuapp.com/users/add', user)
     .then(res => console.log(res.data)) //promise, after its posted well console our the res.data
     // .catch(e=>  console.log(e))
     .finally(
