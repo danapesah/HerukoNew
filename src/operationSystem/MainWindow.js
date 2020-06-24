@@ -20,7 +20,7 @@ update_data_io()
     if(window.location.pathname ==='/display')
     {
      
-      const socket = io.connect('http://localhost:5000')
+      const socket = io.connect('https://newcountdownapp.herokuapp.com')
       socket.on("update_message",( data ,id) => {
         let chosen_state_id=null
         let DB_info = null
@@ -45,7 +45,7 @@ update_data_io()
           console.log(err)
         }
     })//socket
-    const socket1 = io.connect('http://localhost:5000')
+    const socket1 = io.connect('https://newcountdownapp.herokuapp.com')
     socket1.on("table saved to the DB", chosen_state_id => {
       let  curr_chosen_state_id =null
       try {
