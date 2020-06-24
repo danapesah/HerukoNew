@@ -220,7 +220,7 @@ const styles = {
     top:"53%",
     left:"68.8%",
     width:"30%",
-    height:"53%",
+    height:"54%",
     right:"0.5%",
   },
 }
