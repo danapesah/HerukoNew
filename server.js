@@ -7,19 +7,19 @@ const path = require('path');
 
 require('dotenv').config(); //dotenv file
 
-const app=express();
-const port = process.env.PORT ||5000;
+const app = express();
+const port = process.env.PORT || 5000;
 
 
 app.use(cors());
 app.use(express.json()); //parse jason
 
 const uri = process.env.LOCAL_URI; //where our db is stored 
-mongoose.connect(process.env.LOCAL_URI || uri, {useNewUrlParser: true, useCreateIndex: true,   useUnifiedTopology: true });
-                      
-const connection= mongoose.connection; 
-connection.once('open', ()=>{
-    console.log("MongoBD database connection established successfully" );
+mongoose.connect(process.env.LOCAL_URI || uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log("MongoBD database connection established successfully");
 })
 
 
@@ -31,18 +31,17 @@ app.use('/counts', countsRouter);
 
 // if(process.env.NODE_ENV == "production")
 // {
-  console.log("IN");
-  app.use(express.static("build"))
-  app.get('*',(reg,res)=>
-  {
-      res.sendFile(path.join(__dirname,"","build/","index.html"))
-  })
+console.log("IN");
+app.use(express.static("build"))
+app.get('*', (reg, res) => {
+    res.sendFile(path.join(__dirname, "", "build/", "index.html"))
+})
 // }
 
 
 
-app.listen(port ,()=> {
-    console.log('Server is running on port:',  {port} ); //start the server
+app.listen(port, () => {
+    console.log('Server is running on port:', { port }); //start the server
 });
 
 /////////////////////////////////UDP SERVER CDRC
@@ -78,45 +77,45 @@ app.listen(port ,()=> {
 
 /////io
 
-var udpCDRCMessage = "";
-var udpTodMessage = "";
-const serverSharon = require("http").createServer(app);
-const io = require("socket.io")(serverSharon);
+// var udpCDRCMessage = "";
+// var udpTodMessage = "";
+// const serverSharon = require("http").createServer(app);
+// const io = require("socket.io")(serverSharon);
 
-io.on('connection', (socket) => {
-  console.log('made socket connection', socket.id )
-   socket.on("update_message", (update_message, id)=>{
-     console.log("Received: "+ update_message);
-     io.sockets.emit('update_message', update_message, id);
-  })
+// io.on('connection', (socket) => {
+//   console.log('made socket connection', socket.id )
+//    socket.on("update_message", (update_message, id)=>{
+//      console.log("Received: "+ update_message);
+//      io.sockets.emit('update_message', update_message, id);
+//   })
 
-  socket.on("table saved to the DB", (chosen_state_id)=>{
-    console.log("saved: "+ chosen_state_id);
-    io.sockets.emit('table saved to the DB', chosen_state_id);
- })
-
-
- serverUDPCDRC.on('message', function(message, remote) {
-   if(message != udpCDRCMessage)
-   {
-    io.sockets.emit("udpCDRCMessage","CDRC Clock "+message);  
-    udpCDRCMessage = message;
-   }  
-  });
-
-serverUDPTod.on('message', function(message, remote) {
-  if(message != udpTodMessage)
-  {
-    io.sockets.emit("udpTodMessage","Tod Clock "+message);   
-    udpTodMessage = message;
-  }
-  });   
+//   socket.on("table saved to the DB", (chosen_state_id)=>{
+//     console.log("saved: "+ chosen_state_id);
+//     io.sockets.emit('table saved to the DB', chosen_state_id);
+//  })
 
 
-});
+//  serverUDPCDRC.on('message', function(message, remote) {
+//    if(message != udpCDRCMessage)
+//    {
+//     io.sockets.emit("udpCDRCMessage","CDRC Clock "+message);  
+//     udpCDRCMessage = message;
+//    }  
+//   });
 
-const port1 =  4000;
-serverSharon.listen(port1, () => {
-    console.log(`io Server Running at port ${port1}`)
-  });
+// serverUDPTod.on('message', function(message, remote) {
+//   if(message != udpTodMessage)
+//   {
+//     io.sockets.emit("udpTodMessage","Tod Clock "+message);   
+//     udpTodMessage = message;
+//   }
+//   });   
+
+
+// });
+
+// const port1 = process.env.PORT || 4000;
+// serverSharon.listen(port1, () => {
+//     console.log(`io Server Running at port ${port1}`)
+//   });
 ///////

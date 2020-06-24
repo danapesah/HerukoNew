@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import io from "socket.io-client";
 import {connect } from 'react-redux'
-const socket = io.connect('http://localhost:4000');
+// const socket = io.connect('http://localhost:4000');
 
 class CountDownBar extends Component
 {
@@ -11,12 +11,12 @@ state= {
 
 constructor() {
     super()
-    if(window.location.pathname.search("display") != -1)
-    {
-        socket.on("udpCDRCMessage", (message)=>{
-            this.setState({CDRClock:message});
-          })
-    }
+    // if(window.location.pathname.search("display") != -1)
+    // {
+    //     socket.on("udpCDRCMessage", (message)=>{
+    //         this.setState({CDRClock:message});
+    //       })
+    // }
 }
 
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect } from 'react-redux'
 import io from "socket.io-client";
 import {updateRealTimeClock} from '../../Actions';
- const socket = io.connect('http://localhost:4000');
+//  const socket = io.connect('http://localhost:4000');
  
 
 class MainComponentTime extends Component
@@ -15,12 +15,12 @@ class MainComponentTime extends Component
         super()
         if(window.location.pathname.search("display") != -1) 
         {
-        socket.on("udpCDRCMessage", (message)=>{
-            this.setState({CDRClock:message})
-          })
-        socket.on("udpTodMessage", (message)=>{
-            this.setState({TodClock:message})
-          })
+        // socket.on("udpCDRCMessage", (message)=>{
+        //     this.setState({CDRClock:message})
+        //   })
+        // socket.on("udpTodMessage", (message)=>{
+        //     this.setState({TodClock:message})
+        //   })
         }
     }
   
