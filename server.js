@@ -23,20 +23,19 @@ connection.once('open', () => {
 })
 
 
-const countsRouter = require('./backend/routes/counts');
-const usersRouter = require('./backend/routes/users');
+const countsRouter = require('./routes/counts');
+const usersRouter = require('./routes/users');
 
 app.use('/users', usersRouter);
 app.use('/counts', countsRouter);
 
-// if(process.env.NODE_ENV == "production")
-// {
-console.log("IN");
+if(process.env.NODE_ENV == "production")
+{
 app.use(express.static("build"))
 app.get('*', (reg, res) => {
     res.sendFile(path.join(__dirname, "", "build/", "index.html"))
 })
-// }
+}
 
 
 

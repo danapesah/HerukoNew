@@ -47,6 +47,7 @@ e.preventDefault();
 
 axios.get('https://newcountdownapp.herokuapp.com/users/') //GET REQUEST
 .then(response => {
+  console.log("response.data");
 if (response.data.length===0)return;
 this.setState({ DB_users_info :response.data })
 }).finally(()=>this.checkUser())
