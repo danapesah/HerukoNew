@@ -76,45 +76,45 @@ const server = app.listen(port, () => {
 
 /////io
 
-var udpCDRCMessage = "";
-var udpTodMessage = "";
-const serverSharon = require("http").createServer(app);
-const io = require("socket.io")(serverSharon);
+// var udpCDRCMessage = "";
+// var udpTodMessage = "";
+// const serverSharon = require("http").createServer(app);
+// const io = require("socket.io")(serverSharon);
 
-io.on('connection', (socket) => {
-  console.log('made socket connection', socket.id )
-//    socket.on("update_message", (update_message, id)=>{
-//      console.log("Received: "+ update_message);
-//      io.sockets.emit('update_message', update_message, id);
-//   })
+// io.on('connection', (socket) => {
+//   console.log('made socket connection', socket.id )
+// //    socket.on("update_message", (update_message, id)=>{
+// //      console.log("Received: "+ update_message);
+// //      io.sockets.emit('update_message', update_message, id);
+// //   })
 
-//   socket.on("table saved to the DB", (chosen_state_id)=>{
-//     console.log("saved: "+ chosen_state_id);
-//     io.sockets.emit('table saved to the DB', chosen_state_id);
-//  })
-
-
- serverUDPCDRC.on('message', function(message, remote) {
-   if(message != udpCDRCMessage)
-   {
-    io.sockets.emit("udpCDRCMessage","CDRC Clock "+message);  
-    udpCDRCMessage = message;
-   }  
-  });
-
-serverUDPTod.on('message', function(message, remote) {
-  if(message != udpTodMessage)
-  {
-    io.sockets.emit("udpTodMessage","Tod Clock "+message);   
-    udpTodMessage = message;
-  }
-  });   
+// //   socket.on("table saved to the DB", (chosen_state_id)=>{
+// //     console.log("saved: "+ chosen_state_id);
+// //     io.sockets.emit('table saved to the DB', chosen_state_id);
+// //  })
 
 
-});
+//  serverUDPCDRC.on('message', function(message, remote) {
+//    if(message != udpCDRCMessage)
+//    {
+//     io.sockets.emit("udpCDRCMessage","CDRC Clock "+message);  
+//     udpCDRCMessage = message;
+//    }  
+//   });
 
-const port1 = process.env.PORT || 5000;
-serverSharon.listen(server, () => {
-    console.log(`io Server Running at port ${port}`)
-  });
+// serverUDPTod.on('message', function(message, remote) {
+//   if(message != udpTodMessage)
+//   {
+//     io.sockets.emit("udpTodMessage","Tod Clock "+message);   
+//     udpTodMessage = message;
+//   }
+//   });   
+
+
+// });
+
+// const port1 = process.env.PORT || 5000;
+// serverSharon.listen(server, () => {
+//     console.log(`io Server Running at port ${port}`)
+//   });
 ///////

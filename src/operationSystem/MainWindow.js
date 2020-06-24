@@ -16,91 +16,91 @@ class MainWindow extends React.Component {
 update_data_io() 
 {  //update the data from the db by listening to the socket
 
-  try {
-    if(window.location.pathname ==='/display')
-    {
+//   try {
+//     if(window.location.pathname ==='/display')
+//     {
      
-      const socket = io.connect('https://newcountdownapp.herokuapp.com')
-      socket.on("update_message",( data ,id) => {
-        let chosen_state_id=null
-        let DB_info = null
-        let data_len = null 
-        try {
-            const serializedStateID = localStorage.getItem("chosen_state_id"); 
-            if (serializedStateID !== null) {
+//       const socket = io.connect('https://newcountdownapp.herokuapp.com')
+//       socket.on("update_message",( data ,id) => {
+//         let chosen_state_id=null
+//         let DB_info = null
+//         let data_len = null 
+//         try {
+//             const serializedStateID = localStorage.getItem("chosen_state_id"); 
+//             if (serializedStateID !== null) {
        
-              chosen_state_id = JSON.parse(JSON.parse(serializedStateID ))
+//               chosen_state_id = JSON.parse(JSON.parse(serializedStateID ))
               
-              axios.post('https://newcountdownapp.herokuapp.com/counts/edit/' + id , data  )
-              .then(res => console.log(res.data),
-              socket.emit("table saved to the DB" ,id))
+//               axios.post('https://newcountdownapp.herokuapp.com/counts/edit/' + id , data  )
+//               .then(res => console.log(res.data),
+//               socket.emit("table saved to the DB" ,id))
             
             
 
 
-            }
-        } 
-        catch (err) 
-        {
-          console.log(err)
-        }
-    })//socket
-    const socket1 = io.connect('https://newcountdownapp.herokuapp.com')
-    socket1.on("table saved to the DB", chosen_state_id => {
-      let  curr_chosen_state_id =null
-      try {
-        const serializedStateID = localStorage.getItem("chosen_state_id"); 
+//             }
+//         } 
+//         catch (err) 
+//         {
+//           console.log(err)
+//         }
+//     })//socket
+//     const socket1 = io.connect('https://newcountdownapp.herokuapp.com')
+//     socket1.on("table saved to the DB", chosen_state_id => {
+//       let  curr_chosen_state_id =null
+//       try {
+//         const serializedStateID = localStorage.getItem("chosen_state_id"); 
        
-        if (serializedStateID !== null) {
+//         if (serializedStateID !== null) {
 
-          curr_chosen_state_id = JSON.parse(JSON.parse(serializedStateID ))
-        }
-    } 
-    catch (err) 
-    {
-      console.log(err)
-    }
-    if(curr_chosen_state_id!==null && curr_chosen_state_id===chosen_state_id )
-    {
-      console.log("table saved to the DB") 
-      axios.get('https://newcountdownapp.herokuapp.com/counts/') //GET REQUEST
-      .then(response => {
+//           curr_chosen_state_id = JSON.parse(JSON.parse(serializedStateID ))
+//         }
+//     } 
+//     catch (err) 
+//     {
+//       console.log(err)
+//     }
+//     if(curr_chosen_state_id!==null && curr_chosen_state_id===chosen_state_id )
+//     {
+//       console.log("table saved to the DB") 
+//       axios.get('https://newcountdownapp.herokuapp.com/counts/') //GET REQUEST
+//       .then(response => {
       
-        let DB_info = null
-        let data_len = null
-      if (response.data.length===0) return;
-      data_len= response.data.length
-      DB_info={...response.data}
-      if(DB_info!== null &&  chosen_state_id!==null  )
-      {  
-          for(let i = 0 ; i <data_len ; i++)
-          {   
-            if( DB_info[i]._id===chosen_state_id ) 
-            { 
-              localStorage.removeItem("chosen_state") 
-              let serializedState1 = JSON.stringify(DB_info[i]._system_info_object)
-              localStorage.setItem("chosen_state", JSON.stringify(serializedState1));
-            //  console.log("local storage has changed") 
+//         let DB_info = null
+//         let data_len = null
+//       if (response.data.length===0) return;
+//       data_len= response.data.length
+//       DB_info={...response.data}
+//       if(DB_info!== null &&  chosen_state_id!==null  )
+//       {  
+//           for(let i = 0 ; i <data_len ; i++)
+//           {   
+//             if( DB_info[i]._id===chosen_state_id ) 
+//             { 
+//               localStorage.removeItem("chosen_state") 
+//               let serializedState1 = JSON.stringify(DB_info[i]._system_info_object)
+//               localStorage.setItem("chosen_state", JSON.stringify(serializedState1));
+//             //  console.log("local storage has changed") 
 
-                window.location.reload()
-            }
-          }
+//                 window.location.reload()
+//             }
+//           }
 
-        }
+//         }
 
-      })//axios
-    }
+//       })//axios
+//     }
 
-  })//socket
-  }
+//   })//socket
+//   }
 
-}
+// }
 
-// } 
-catch (err) 
-{
-    console.log(err)
-}
+// // } 
+// catch (err) 
+// {
+//     console.log(err)
+// }
 }
 
   render() {

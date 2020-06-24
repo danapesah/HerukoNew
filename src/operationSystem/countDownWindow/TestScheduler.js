@@ -94,8 +94,8 @@ if(window.location.pathname ==='/display')
         axios.post('https://newcountdownapp.herokuapp.com/counts/edit/' + chosen_state_id, copy_state)
         .then(res => console.log(res.data)).
         finally (function (){
-        let socket = io.connect('https://newcountdownapp.herokuapp.com')
-        socket.emit("update_message" ,copy_state,chosen_state_id )
+        // let socket = io.connect('https://newcountdownapp.herokuapp.com')
+        // socket.emit("update_message" ,copy_state,chosen_state_id )
         })
             
 

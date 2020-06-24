@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import io from "socket.io-client";
 import {connect } from 'react-redux'
-const socket = io.connect('https://newcountdownapp.herokuapp.com');
+// const socket = io.connect('https://newcountdownapp.herokuapp.com');
 
 class CountDownBar extends Component
 {
@@ -13,9 +13,9 @@ constructor() {
     super()
     if(window.location.pathname.search("display") != -1)
     {
-        socket.on("udpCDRCMessage", (message)=>{
-            this.setState({CDRClock:message});
-          })
+        // socket.on("udpCDRCMessage", (message)=>{
+        //     this.setState({CDRClock:message});
+        //   })
     }
 }
 
