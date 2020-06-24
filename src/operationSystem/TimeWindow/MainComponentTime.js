@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect } from 'react-redux'
 import io from "socket.io-client";
 import {updateRealTimeClock} from '../../Actions';
- const socket = io.connect('http://localhost:4000');
+ const socket = io.connect('http://localhost:5000');
  
 
 class MainComponentTime extends Component
