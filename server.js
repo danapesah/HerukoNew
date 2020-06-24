@@ -39,7 +39,7 @@ app.get('*', (reg, res) => {
 
 
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log('Server is running on port:', { port }); //start the server
 });
 
@@ -83,15 +83,15 @@ const io = require("socket.io")(serverSharon);
 
 io.on('connection', (socket) => {
   console.log('made socket connection', socket.id )
-   socket.on("update_message", (update_message, id)=>{
-     console.log("Received: "+ update_message);
-     io.sockets.emit('update_message', update_message, id);
-  })
+//    socket.on("update_message", (update_message, id)=>{
+//      console.log("Received: "+ update_message);
+//      io.sockets.emit('update_message', update_message, id);
+//   })
 
-  socket.on("table saved to the DB", (chosen_state_id)=>{
-    console.log("saved: "+ chosen_state_id);
-    io.sockets.emit('table saved to the DB', chosen_state_id);
- })
+//   socket.on("table saved to the DB", (chosen_state_id)=>{
+//     console.log("saved: "+ chosen_state_id);
+//     io.sockets.emit('table saved to the DB', chosen_state_id);
+//  })
 
 
  serverUDPCDRC.on('message', function(message, remote) {
@@ -114,7 +114,7 @@ serverUDPTod.on('message', function(message, remote) {
 });
 
 const port1 = process.env.PORT || 4000;
-serverSharon.listen(port, () => {
+serverSharon.listen(server, () => {
     console.log(`io Server Running at port ${port}`)
   });
 ///////
