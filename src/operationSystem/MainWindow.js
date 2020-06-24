@@ -206,7 +206,7 @@ const styles = {
     border: "1px solid",
     backgroundColor: '#d9f2d9',
     overflow:"scroll",
-    top:"62%",
+    top:"64%",
     left:"0.5%",
     height:"43%",
     position:"absolute",
@@ -220,7 +220,7 @@ const styles = {
     top:"53%",
     left:"68.8%",
     width:"30%",
-    height:"51%",
+    height:"53%",
     right:"0.5%",
   },
 }
